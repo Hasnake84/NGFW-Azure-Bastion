@@ -58,7 +58,37 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
 
      <a href="https://imgur.com/HaaaeQx"><img src="https://i.imgur.com//HaaaeQx.png" title="source: imgur.com" /></a>
 
- 
+# 9. Next, we create route tables for outbound traffic from our  servers to the internet and inbound traffic from the internet
+
+   - Azure search bar > Route tables > + Create
+
+  <a href="https://imgur.com/0vMODoX"><img src="https://i.imgur.com//0vMODoX.png" title="source: imgur.com" /></a>
+
+   - Route tables > Settings > Routes > + Add
+   - Route name = Outbound
+   - Destination type = IP address
+   - Destination IP address = 0.0.0.0/0 (Default internet address)
+   - Next hop type = Virtual appliance
+   - Next hop address = 10.10.10.10 (Internal firewall port)
+
+  <a href="https://imgur.com/B2TqFcL"><img src="https://i.imgur.com//B2TqFcL.png" tB2TqFcLitle="source: imgur.com" /></a>
+
+   - Now we need to associate the route we just created with a subnet
+     - Route overview > Subnets > + Assoiciate > Select the V-Net and the DMZ subnet
+
+     # Add Inbound route
+      
+   - Route tables > Settings > Routes > + Add
+   - Route name = Inbound
+   - Destination type = IP address
+   - Destination IP address = 10.10.10.10/24 (DMZ Subnet)
+   - Next hop type = Virtual appliance
+   - Next hop address = 10.10.10.10 (External firewall port)
+
+  <a href="https://imgur.com/DWR519y"><img src="https://i.imgur.com//DWR519y.png" tB2TqFcLitle="source: imgur.com" /></a>
+
+   - Associate the route we just created with a subnet
+     - Route overview > Subnets > + Assoiciate > Select the V-Net and the WAN subnet
 
 
     
