@@ -1,7 +1,13 @@
 # NGFW-Azure-Bastion
 
-This project focus on securing virtual machines (VMs) within the Azure cloud environment, apply Azure Bastion service to avoid assigning public IP addresses for our resources. We will achieve this by deploying a Fortinet Next-Generation Firewall (NGFW) on Microsoft Azure.  The NGFW will act as a central security barrier, inspecting and managing all network traffic flowing to and from the VMs.  Firewall rules will be applied to shield the VMs from cyber threats, including unauthorized access attempts, malware infiltration, and malicious data exfiltration.  To further enhance protection, Intrusion Prevention System (IPS) and Intrusion Detection System (IDS) functionalities within the NGFW will be configured to identify and block suspicious network activity in real-time. Additionally, a simulated brute-force attack will be conducted to showcase the NGFW's ability to detect and thwart such attempts. Finally, the project will explore the integration of the configured firewall rules with Microsoft Sentinel, a cloud-native security information and event management (SIEM) solution. This integration will allow for centralized logging, analysis, and visualization of security events, providing valuable insights for proactive threat detection and response.
+This project focus on securing virtual machines (VMs) within the Azure cloud environment, apply Azure Bastion service to avoid assigning public IP addresses for our resources. We will achieve this by deploying a Fortinet Next-Generation Firewall (NGFW) on Microsoft Azure.  The NGFW will act as a central security barrier, inspecting and managing all network traffic flowing to and from the VMs.  Firewall rules will be applied to shield the VMs from cyber threats, To further enhance protection, Intrusion Prevention System (IPS) and Intrusion Detection System (IDS) functionalities within the NGFW will be configured to identify and block suspicious network activity in real-time. Finally, the project will explore the integration of the configured firewall rules with Microsoft Sentinel, a cloud-native security information and event management (SIEM) solution.
 
+# Objectives
+  - Create Resource group and Virtual machines without RDP access for public inbound ports (No public IP address).
+  - Create a Virtual network and add three Subnets within the V-Net (WAN, DMZ and Bastion subnets).
+  - Create Route tables, add two routes (Inbound and Outbound) associate them with the appropriate subnet.
+  - Deploy Fortinet FortiGate Next-Generation Firewall within Azure and configure it's policy and routes.
+  
   <a href="https://imgur.com/3yK2AMT "><img src="https://i.imgur.com//3yK2AMT.png" title="source: imgur.com" /></a> 
 
 # 1. Azure.portal.com > Resource group > Create Resource group
@@ -53,7 +59,7 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
  
  # We must acknowledge that having the management of our firewall open to the open internet is not a best security practice, it is setup this way for simplicity and educational purpose.
 
-   - Double click each interface to edit > Rename Port1 and Port2, for Port1 WAN interface only allow HHTPS and PING traffic
+   - Double click each interface to edit > Rename Port1 and Port2, for Port1 WAN interface only allow HTTPS and PING traffic
    - For Port2 DMZ interface only allow SSH and PING traffic
 
      <a href="https://imgur.com/HaaaeQx"><img src="https://i.imgur.com//HaaaeQx.png" title="source: imgur.com" /></a>
@@ -90,6 +96,7 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
    - Associate the route we just created with a subnet
      - Route overview > Subnets > + Assoiciate > Select the V-Net and the WAN subnet
 
+# 10. Create a Firewall policy for outbound traffic 
 
     
 
