@@ -58,7 +58,7 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
 
 # 8. FortiGet-FW > Network > Interfaces
  
- # We must acknowledge that having the management of our firewall open to the open internet is not a best security practice, it is setup this way for simplicity and educational purpose.
+ # We must acknowledge that having the management of our firewall open to the open internet is not a best security practice, it is setup this way for simplicity and educational purposes.
 
    - Double click each interface to edit > Rename Port1 and Port2, for Port1 WAN interface only allow HTTPS and PING traffic
    - For Port2 DMZ interface only allow SSH and PING traffic
@@ -96,9 +96,43 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
 
    - Associate the route we just created with a subnet
      - Route overview > Subnets > + Assoiciate > Select the V-Net and the WAN subnet
+     
+# Now we can use PING command to test our connection within the DMZ and outbound PING request to Google.com
 
-# 10. Create a Firewall policy for outbound traffic 
+ - We are able to PING succesfully to our local machine in the DMZ and to Google.com
+ - Also captured the following PING traffic on our NGFW
+   - Fortinet-Fortiget Firewall > Log & Report > Forward Traffic
 
+   <a href="https://imgur.com/qk0iZji"><img src="https://i.imgur.com//qk0iZji.png" tB2TqFcLitle="source: imgur.com" /></a>
+
+# 10. Create a Firewall policy for outbound traffic on our NGFW
+
+  - Incoming interface = DMZ (Port2)
+  - Outgoing interface = WAN (Port1)
+  - Service = PING,DNS and HTTPS
+  - Action = Accept
+  - NAT = Enabled
+  - Policy = Enabled
+
+    <a href="https://imgur.com/3GvSbMa"><img src="https://i.imgur.com//3GvSbMa.png" tB2TqFcLitle="source: imgur.com" /></a>
+
+# Now we need to create a virtual IP for Network Address Transilation for inbound policy allowing only RDP traffic
+
+ - Policy & Objects > Virtual IP > + Create new
+   - External Ip address = External port on Firewall
+   - Map to IPV4 address = IP for Windows machine in the DMZ
+   - Port forwarding > External IP & Map to IPV4 = 3389 (RDP)
+
+<a href="https://imgur.com/QE9nD1z"><img src="https://i.imgur.com//QE9nD1z.png" tB2TqFcLitle="source: imgur.com" /></a>
+
+# Create additional incoming Firewall policy for RDP traffic
+
+  - Source = All
+  - Destination = Virtual IP we created previous step
+  - Service = RDP
+  - NAT = Disabled
+
+<a href="https://imgur.com/MotK6tj"><img src="https://i.imgur.com//MotK6tj.png" tB2TqFcLitle="source: imgur.com" /></a>
     
 
 
