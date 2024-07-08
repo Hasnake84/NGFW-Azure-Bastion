@@ -1,5 +1,6 @@
-# NGFW-Azure-Bastion
+<a href="https://imgur.com/CucK6qJ"><img src="https://i.imgur.com//CucK6qJ.png" tB2TqFcLitle="source: imgur.com" /></a>
 
+# NGFW-Azure-Bastion
 This project focus on securing virtual machines (VMs) within the Azure cloud environment, apply Azure Bastion service to avoid assigning public IP addresses for our resources. We will achieve this by deploying a Fortinet Next-Generation Firewall (NGFW) on Microsoft Azure.  The NGFW will act as a central security barrier, inspecting and managing all network traffic flowing to and from the VMs.  Firewall rules will be applied to shield the VMs from cyber threats, To further enhance protection, Intrusion Prevention System (IPS) and Intrusion Detection System (IDS) functionalities within the NGFW will be configured to identify and block suspicious network activity in real-time. Finally, the project will explore the integration of the configured firewall rules with Microsoft Sentinel, a cloud-native security information and event management (SIEM) solution.
 
 # Objectives
