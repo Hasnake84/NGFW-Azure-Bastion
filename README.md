@@ -4,7 +4,7 @@
 This project focus on securing virtual machines (VMs) within the Azure cloud environment, apply Azure Bastion service to avoid assigning public IP addresses for our resources. We will achieve this by deploying a Fortinet Next-Generation Firewall (NGFW) on Microsoft Azure.  The NGFW will act as a central security barrier, inspecting and managing all network traffic flowing to and from the VMs.  Firewall rules will be applied to shield the VMs from cyber threats, To further enhance protection, Intrusion Prevention System (IPS) and Intrusion Detection System (IDS) functionalities within the NGFW will be configured to identify and block suspicious network activity in real-time. Finally, the project will explore the integration of the configured firewall rules with Microsoft Sentinel, a cloud-native security information and event management (SIEM) solution.
 
 # Objectives
-  - Create Resource group and Virtual machines without RDP access for public inbound ports (No public IP address).
+  - Create Resource group and Virtual machines without RDP access for public inbound ports (No public IP address).  
   - Create a Virtual network and add three Subnets within the V-Net (WAN, DMZ and Bastion subnets).
   - Create Route tables, add two routes (Inbound and Outbound) associate them with the appropriate subnet.
   - Deploy Fortinet FortiGate Next-Generation Firewall within Azure and configure it's policy and routes.
@@ -133,8 +133,16 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
   - NAT = Disabled
 
 <a href="https://imgur.com/MotK6tj"><img src="https://i.imgur.com//MotK6tj.png" tB2TqFcLitle="source: imgur.com" /></a>
-    
 
+# 11. Test our connection between our VMs in the DMZ and to the internet using PING command.
+  
+  - Successfull PING request
+     
+  <a href="https://imgur.com/JoF02to"><img src="https://i.imgur.com//JoF02to.png" tB2TqFcLitle="source: imgur.com" /></a>
+
+  - See the captured ICMP PING traffic by our NGFW
+
+  <a href="https://imgur.com/qk0iZji"><img src="https://i.imgur.com//qk0iZji.png" tB2TqFcLitle="source: imgur.com" /></a>
 
 
 
