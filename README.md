@@ -7,8 +7,10 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
   - Create Resource group and Virtual machines without RDP access for public inbound ports (No public IP address).  
   - Create a Virtual network and add three Subnets within the V-Net (WAN, DMZ and Bastion subnets).
   - Create Route tables, add two routes (Inbound and Outbound) associate them with the appropriate subnet.
-  - Deploy Fortinet FortiGate Next-Generation Firewall within Azure and configure it's policy and routes.
-  
+  - Deploy and Configure a Next-Gen FortiGate Firewall, set up firewall rules, and implement Intrusion Prevention Systems (IPS) for enhanced security.
+  - Create a Log Analytics Workspace on Azure and connect our firewall to this workspace for efficient log management.
+  - Utilize Azure's Sentinel(SIEM) tool in creating alerts, conducting incident response, and ensuring your network's integrity.
+
   <a href="https://imgur.com/3yK2AMT "><img src="https://i.imgur.com//3yK2AMT.png" title="source: imgur.com" /></a> 
 
 # 1. Azure.portal.com > Resource group > Create Resource group
@@ -58,7 +60,7 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
 
 # 8. FortiGet-FW > Network > Interfaces
  
- # We must acknowledge that having the management of our firewall open to the open internet is not a best security practice, it is setup this way for simplicity and educational purposes.
+ # Note: We must acknowledge that having the management of our firewall open to the open internet is not a best security practice, it is setup this way for simplicity and educational purposes.
 
    - Double click each interface to edit > Rename Port1 and Port2, for Port1 WAN interface only allow HTTPS and PING traffic
    - For Port2 DMZ interface only allow SSH and PING traffic
@@ -132,17 +134,29 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
   - Service = RDP
   - NAT = Disabled
 
-<a href="https://imgur.com/MotK6tj"><img src="https://i.imgur.com//MotK6tj.png" tB2TqFcLitle="source: imgur.com" /></a>
+ <a href="https://imgur.com/MotK6tj"><img src="https://i.imgur.com//MotK6tj.png" tB2TqFcLitle="source: imgur.com" /></a>
 
 # 11. Test our connection between our VMs in the DMZ and to the internet using PING command.
   
   - Successfull PING request
      
-  <a href="https://imgur.com/JoF02to"><img src="https://i.imgur.com//JoF02to.png" tB2TqFcLitle="source: imgur.com" /></a>
+  <a href="https://imgur.com/69h5XC7"><img src="https://i.imgur.com//69h5XC7.png" tB2TqFcLitle="source: imgur.com" /></a>
 
-  - See the captured ICMP PING traffic by our NGFW
+  - See the captured ICMP and PING traffic by our NGFW
 
   <a href="https://imgur.com/qk0iZji"><img src="https://i.imgur.com//qk0iZji.png" tB2TqFcLitle="source: imgur.com" /></a>
+
+  - While working on this project, our Next-Gen Firewall detected a number of login attempts into our enviroment using RDP session, which we left open to all incoming traffic on our firewal policy, but one malicious IP has attempted 636 times within one hour, which indicate a bruteforce attack, screeshot below along with other malcious IP from different geographical locations.
+
+  <a href="https://imgur.com/qgdimsH"><img src="https://i.imgur.com//qgdimsH.png" tB2TqFcLitle="source: imgur.com" /></a>
+
+  - Additional malicious IPs
+    
+  <a href="https://imgur.com/o6m07F0"><img src="https://i.imgur.com//o6m07F0.png" tB2TqFcLitle="source: imgur.com" /></a>
+
+  <a href="https://imgur.com/OTtkd3I"><img src="https://i.imgur.com//OTtkd3I.png" tB2TqFcLitle="source: imgur.com" /></a>
+
+# 12. 
 
 
 
