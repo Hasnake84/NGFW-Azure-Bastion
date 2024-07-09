@@ -85,7 +85,7 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
    - Now we need to associate the route we just created with a subnet
      - Route overview > Subnets > + Assoiciate > Select the V-Net and the DMZ subnet
 
-     # Add Inbound route
+# Add Inbound route
       
    - Route tables > Settings > Routes > + Add
    - Route name = Inbound
@@ -103,12 +103,13 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
 
  - We are able to PING succesfully to our local machine in the DMZ and to Google.com
  - Also captured the following PING traffic on our NGFW
-   - Fortinet-Fortiget Firewall > Log & Report > Forward Traffic
+   - FortiGate WebUI > Log & Report > Forward Traffic
 
    <a href="https://imgur.com/qk0iZji"><img src="https://i.imgur.com//qk0iZji.png" tB2TqFcLitle="source: imgur.com" /></a>
 
 # 10. Create a Firewall policy for outbound traffic on our NGFW
 
+  - FortiGate WebUI > Policy & Objects > Firewall Policy > = Create new
   - Incoming interface = DMZ (Port2)
   - Outgoing interface = WAN (Port1)
   - Service = PING,DNS and HTTPS
@@ -120,7 +121,7 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
 
 # Now we need to create a virtual IP for Network Address Transilation for inbound policy allowing only RDP traffic
 
- - Policy & Objects > Virtual IP > + Create new
+ - FortiGate WebUI > Policy & Objects > Virtual IP > + Create new
    - External Ip address = External port on Firewall
    - Map to IPV4 address = IP for Windows machine in the DMZ
    - Port forwarding > External IP & Map to IPV4 = 3389 (RDP)
@@ -129,6 +130,7 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
 
 # Create additional incoming Firewall policy for RDP traffic
 
+  - FortiGate WebUI > Policy & Objects > Virtual IP > + Create new
   - Source = All
   - Destination = Virtual IP we created previous step
   - Service = RDP
@@ -156,7 +158,21 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
 
   <a href="https://imgur.com/OTtkd3I"><img src="https://i.imgur.com//OTtkd3I.png" tB2TqFcLitle="source: imgur.com" /></a>
 
-# 12. 
+# 12. Enable our IPS (Intrusion Prevention System) on our NGFW
 
+  - FortiGate WebUI > Intrusion Prevention > + Create new
+  - Botnet C&C = Blocked
+  - Create new
+  - Type = Signature
+  - Action = Monitor
+  - Search bar > Type 'RDP' > Select 'MS.RDP.Connection.Brute.Force' > Ok
 
+    <a href="https://imgur.com/RhrZlZY"><img src="https://i.imgur.com//RhrZlZY.png" tB2TqFcLitle="source: imgur.com" /></a>
+
+  - We can see the IPS signature rules and filters in the details section
+    
+    <a href="https://imgur.com/MotK6tj"><img src="https://i.imgur.com//MotK6tj.png" tB2TqFcLitle="source: imgur.com" /></a>
+
+  - FortiGate WebUI > Policy & Objects > Firewall Policy
+  - Double click Port1-WAN interface
 
