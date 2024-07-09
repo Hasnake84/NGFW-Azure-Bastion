@@ -148,7 +148,7 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
 
   <a href="https://imgur.com/qk0iZji"><img src="https://i.imgur.com//qk0iZji.png" tB2TqFcLitle="source: imgur.com" /></a>
 
-  - While working on this project, our Next-Gen Firewall detected a number of login attempts into our enviroment using RDP session, which we left open to all incoming traffic on our firewal policy, but one malicious IP has attempted 636 times within one hour, which indicate a bruteforce attack, screeshot below along with other malcious IP from different geographical locations.
+  - While working on this project, our Next-Gen Firewall detected a number of login attempts into our enviroment using RDP session, which we left intentionally open to all incoming traffic on our firewall policy, but one malicious IP has attempted 636 times within one hour, which indicate a bruteforce attack, screeshot below along with other malcious IP from different geographical locations.
 
   <a href="https://imgur.com/qgdimsH"><img src="https://i.imgur.com//qgdimsH.png" tB2TqFcLitle="source: imgur.com" /></a>
 
@@ -158,7 +158,7 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
 
   <a href="https://imgur.com/OTtkd3I"><img src="https://i.imgur.com//OTtkd3I.png" tB2TqFcLitle="source: imgur.com" /></a>
 
-# 12. Enable our IPS (Intrusion Prevention System) on our NGFW
+# 12. Enable IPS (Intrusion Prevention System) on our NGFW
 
   - FortiGate WebUI > Intrusion Prevention > + Create new
   - Botnet C&C = Blocked
@@ -175,4 +175,20 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
 
   - FortiGate WebUI > Policy & Objects > Firewall Policy
   - Double click Port1-WAN interface
+  - Security Profiles > IPS toggle On > from drop down select the IPS signature that we just created
+
+    <a href="https://imgur.com/XO2mYJe"><img src="https://i.imgur.com//XO2mYJe.png" tB2TqFcLitle="source: imgur.com" /></a>
+
+# 13. Next we create a custom IPS signature that will enable us to block a malicious bruteforce attack
+
+  - FortiGate WebUI > Security Profiles > IPS Signatures > Create new
+  - Name it > Paste the following custom signature > Ok
+  - "F-SBID( --attack_id 7170; --name "MS.RDP.Connection.Brute.Force."; --protocol TCP; --dst_port 3389; --flow from_client; --seq 1, relative; --pattern "|e0|"; --distance 5,packet; 
+    within 1,packet; --rate 5,20; --track SRC_IP ; )"
+  - Security Profiles > Intrusion Prevention > Create new > Select custom signature
+  - Type = Signature > Action = Block Status = Enable > Add selected
+
+    <a href="https://imgur.com/wAfub3s"><img src="https://i.imgur.com//wAfub3s.png" tB2TqFcLitle="source: imgur.com" /></a>
+
+
 
