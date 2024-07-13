@@ -176,6 +176,9 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
   - FortiGate WebUI > Policy & Objects > Firewall Policy
   - Double click Port1-WAN interface
   - Security Profiles > IPS toggle On > from drop down select the IPS signature that we just created
+  - Logging options
+    - Log allowed traffic > On > All sessions
+    - Generate logs when session starts > On
 
     <a href="https://imgur.com/XO2mYJe"><img src="https://i.imgur.com//XO2mYJe.png" tB2TqFcLitle="source: imgur.com" /></a>
 
@@ -189,6 +192,19 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
   - Type = Signature > Action = Block Status = Enable > Add selected
 
     <a href="https://imgur.com/wAfub3s"><img src="https://i.imgur.com//wAfub3s.png" tB2TqFcLitle="source: imgur.com" /></a>
+
+# 14. Generate an Action = Deny (Blocked) by UTM (Unified threat management) log for RDP connection brute force attack
+
+  - Open RDP (Remote Desktop Connection) from local machine (Outside DMZ)
+  - Attempt to login with incorrect credentials (Username & Password) > 5X
+
+    <a href="https://imgur.com/VOeb3L0"><img src="https://i.imgur.com//VOeb3L0.png" tB2TqFcLitle="source: imgur.com" /></a>
+
+   Log Details
+   
+    <a href="https://imgur.com/dzUh16P"><img src="https://i.imgur.com//dzUh16P.png" tB2TqFcLitle="source: imgur.com" /></a>
+
+
 
 
 
