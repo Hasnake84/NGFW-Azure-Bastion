@@ -198,18 +198,24 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
 
     <a href="https://imgur.com/wAfub3s"><img src="https://i.imgur.com//wAfub3s.png" tB2TqFcLitle="source: imgur.com" /></a>
 
-# 14. Generate an Action = Deny (Blocked) by UTM (Unified threat management) log for RDP connection brute force attack
+# 14. Generate an Action = Deny (Block) by UTM (Unified threat management) log for RDP connection brute force attack
 
   - Open RDP (Remote Desktop Connection) from local machine (Outside DMZ)
   - Attempt to login with incorrect credentials (Username & Password) > 5X
 
     <a href="https://imgur.com/VOeb3L0"><img src="https://i.imgur.com//VOeb3L0.png" tB2TqFcLitle="source: imgur.com" /></a>
 
-   Log Details
+  - Log Details
    
     <a href="https://imgur.com/dzUh16P"><img src="https://i.imgur.com//dzUh16P.png" tB2TqFcLitle="source: imgur.com" /></a>
 
+# 15. Next we create a Log Analytics workspaces for Microsoft Sentinel
 
+  - Azure.portal.com > search bar >  Log Analytics workspaces >  Create
+
+    <a href="https://imgur.com/clZMp9Z"><img src="https://i.imgur.com//clZMp9Z.png" tB2TqFcLitle="source: imgur.com" /></a>
+    
+  - Azure.portal.com > search bar >  Microsoft Sentinel > Select > Log Analytics workspace > Add   
 
 
 
