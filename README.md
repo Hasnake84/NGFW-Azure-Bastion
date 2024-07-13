@@ -130,12 +130,17 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
 
 # Create additional incoming Firewall policy for RDP traffic
 
-  - FortiGate WebUI > Policy & Objects > Virtual IP > + Create new
+  - FortiGate WebUI > Policy & Objects > Port1 (WAN to DMZ)
+  - Incoming interface = WAN (port1)
+  - Outgoing interface = DMZ (port2)
   - Source = All
   - Destination = Virtual IP we created previous step
   - Service = RDP
   - NAT = Disabled
-
+  - Logging options
+    - Log allowed traffic > On > All sessions
+    - Generate logs when session starts > On
+    
  <a href="https://imgur.com/MotK6tj"><img src="https://i.imgur.com//MotK6tj.png" tB2TqFcLitle="source: imgur.com" /></a>
 
 # 11. Test our connection between our VMs in the DMZ and to the internet using PING command.
