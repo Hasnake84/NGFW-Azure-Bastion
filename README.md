@@ -211,11 +211,10 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
 
 # 15. Next we create a Log Analytics workspaces for Microsoft Sentinel
 
-  - Azure.portal.com > search bar >  Log Analytics workspaces >  Create
+  - Azure.portal.com > search bar >  Log Analytics workspaces >  Create   
+  - Azure.portal.com > search bar >  Microsoft Sentinel > Select > Log Analytics workspace > Add
 
-    <a href="https://imgur.com/clZMp9Z"><img src="https://i.imgur.com//clZMp9Z.png" tB2TqFcLitle="source: imgur.com" /></a>
-    
-  - Azure.portal.com > search bar >  Microsoft Sentinel > Select > Log Analytics workspace > Add   
+     <a href="https://imgur.com/clZMp9Z"><img src="https://i.imgur.com//clZMp9Z.png" tB2TqFcLitle="source: imgur.com" /></a>
 
 
 
