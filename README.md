@@ -11,7 +11,7 @@ This project focus on securing virtual machines (VMs) within the Azure cloud env
   - Create a Log Analytics Workspace on Azure and connect our firewall to this workspace for efficient log management.
   - Utilize Azure's Sentinel(SIEM) tool in creating alerts, conducting incident response, and ensuring your network's integrity.
 
-  <a href="https://imgur.com/3yK2AMT "><img src="https://i.imgur.com//3yK2AMT.png" title="source: imgur.com" /></a> 
+    <a href="https://imgur.com/YNN4UPD"><img src="https://i.imgur.com//YNN4UPD.png" title="source: imgur.com" /></a> 
 
 # 1. Azure.portal.com > Resource group > Create Resource group
 # 2. Create Windows-10-Pro and Linux-Ubuntu-Server
