@@ -1,11 +1,11 @@
 <a href="https://imgur.com/CucK6qJ"><img src="https://i.imgur.com//CucK6qJ.png" tB2TqFcLitle="source: imgur.com" /></a>
 
-# NGFW-Azure-Bastion
+## NGFW-Azure-Bastion
 This project focus on securing virtual machines (VMs) within the Azure cloud environment, apply Azure Bastion service to avoid assigning public IP addresses for our resources. We will achieve this by deploying a Fortinet Next-Generation Firewall (NGFW) on Microsoft Azure.  The NGFW will act as a central security barrier, inspecting and managing all network traffic flowing to and from the VMs.  Firewall rules will be applied to shield the VMs from cyber threats.
 
 To further enhance protection, Intrusion Prevention System (IPS) and Intrusion Detection System (IDS) functionalities within the NGFW will be configured to identify and block suspicious network activity in real-time. Finally, the project will explore the integration of the configured firewall rules with Microsoft Sentinel, a cloud-native security information and event management (SIEM) solution.
 
-# Objectives
+## Objectives
   - Create Resource group and Virtual machines without RDP access for public inbound ports (No public IP address).  
   - Create a Virtual network and add three Subnets within the V-Net (WAN, DMZ and Bastion subnets).
   - Create Route tables, add two routes (Inbound and Outbound) associate them with the appropriate subnet.
@@ -15,8 +15,8 @@ To further enhance protection, Intrusion Prevention System (IPS) and Intrusion D
 
     <a href="https://imgur.com/YNN4UPD"><img src="https://i.imgur.com//YNN4UPD.png" title="source: imgur.com" /></a> 
 
-# 1. Azure.portal.com > Resource group > Create Resource group
-# 2. Create Windows-10-Pro and Linux-Ubuntu-Server
+### 1. Azure.portal.com > Resource group > Create Resource group
+### 2. Create Windows-10-Pro and Linux-Ubuntu-Server
 
    - Basics > select 'None' for Inbound Rules
 
@@ -26,19 +26,19 @@ To further enhance protection, Intrusion Prevention System (IPS) and Intrusion D
   
      <a href="https://imgur.com/mHbMGfb"><img src="https://i.imgur.com//mHbMGfb.png" title="source: imgur.com" /></a>
      
-# 3. Create a Virtual Network  
+### 3. Create a Virtual Network  
 
    - Virtual network > Create > Security > Enable Azure Bastion
 
      <a href="https://imgur.com/DH93PIE"><img src="https://i.imgur.com//DH93PIE.png" title="source: imgur.com" /></a>
 
-# 4. Virtual network > Open the created V-Net > Settings > Subnets > + Subnet
+### 4. Virtual network > Open the created V-Net > Settings > Subnets > + Subnet
 
    - Create the following three subnets with their own IP address ranges
 
      <a href="https://imgur.com/RbQVkK4"><img src="https://i.imgur.com//RbQVkK4.png" title="source: imgur.com" /></a>
 
-# 5. Next, we create our Fortinet FortiGate Next-Generation Firewall 
+### 5. Next, we create our Fortinet FortiGate Next-Generation Firewall 
   
    - Search bar > Market place > Fortinet > Fortinet FortiGate Next-Generation Firewall > Single VM > Create
 
@@ -48,11 +48,11 @@ To further enhance protection, Intrusion Prevention System (IPS) and Intrusion D
 
      <a href="https://imgur.com/EpyyYhK"><img src="https://i.imgur.com//EpyyYhK.png" title="source: imgur.com" /></a>
 
-# 6. Open our Fortinet FortiGate Next-Generation Firewall > Copy Public IP that is assigned to our Firewall resource
+### 6. Open our Fortinet FortiGate Next-Generation Firewall > Copy Public IP that is assigned to our Firewall resource
 
   <a href="https://imgur.com/WiuxWm1"><img src="https://i.imgur.com//WiuxWm1.png" title="source: imgur.com" /></a>  
 
-# 7. Paste Public IP into any browser > Advanced > Proceed > Login with the credential that we created earlier
+### 7. Paste Public IP into any browser > Advanced > Proceed > Login with the credential that we created earlier
 
   <a href="https://imgur.com/NvM5YXm"><img src="https://i.imgur.com//NvM5YXm.png" title="source: imgur.com" /></a>  
 
@@ -60,16 +60,16 @@ To further enhance protection, Intrusion Prevention System (IPS) and Intrusion D
 
      <a href="https://imgur.com/GWNivpj"><img src="https://i.imgur.com//GWNivpj.png" title="source: imgur.com" /></a>
 
-# 8. FortiGet-FW > Network > Interfaces
+### 8. FortiGet-FW > Network > Interfaces
  
- # Note: We must acknowledge that having the management of our firewall open to the open internet is not a best security practice, it is setup this way for simplicity and educational purposes.
+ ### Note: We must acknowledge that having the management of our firewall open to the open internet is not a best security practice, it is setup this way for simplicity and educational purposes.
 
    - Double click each interface to edit > Rename Port1 and Port2, for Port1 WAN interface only allow HTTPS and PING traffic
    - For Port2 DMZ interface only allow SSH and PING traffic
 
      <a href="https://imgur.com/HaaaeQx"><img src="https://i.imgur.com//HaaaeQx.png" title="source: imgur.com" /></a>
 
-# 9. Next, we create route tables for outbound traffic from our  servers to the internet and inbound traffic from the internet
+### 9. Next, we create route tables for outbound traffic from our  servers to the internet and inbound traffic from the internet
 
    - Azure search bar > Route tables > + Create
 
@@ -87,7 +87,7 @@ To further enhance protection, Intrusion Prevention System (IPS) and Intrusion D
    - Now we need to associate the route we just created with a subnet
      - Route overview > Subnets > + Assoiciate > Select the V-Net and the DMZ subnet
 
-# Add Inbound route
+### Add Inbound route
       
    - Route tables > Settings > Routes > + Add
    - Route name = Inbound
@@ -101,7 +101,7 @@ To further enhance protection, Intrusion Prevention System (IPS) and Intrusion D
    - Associate the route we just created with a subnet
      - Route overview > Subnets > + Assoiciate > Select the V-Net and the WAN subnet
      
-# Now we can use PING command to test our connection within the DMZ and outbound PING request to Google.com
+### Now we can use PING command to test our connection within the DMZ and outbound PING request to Google.com
 
  - We are able to PING succesfully to our local machine in the DMZ and to Google.com
  - Also captured the following PING traffic on our NGFW
@@ -109,7 +109,7 @@ To further enhance protection, Intrusion Prevention System (IPS) and Intrusion D
 
    <a href="https://imgur.com/qk0iZji"><img src="https://i.imgur.com//qk0iZji.png" tB2TqFcLitle="source: imgur.com" /></a>
 
-# 10. Create a Firewall policy for outbound traffic on our NGFW
+### 10. Create a Firewall policy for outbound traffic on our NGFW
 
   - FortiGate WebUI > Policy & Objects > Firewall Policy > = Create new
   - Incoming interface = DMZ (Port2)
@@ -121,7 +121,7 @@ To further enhance protection, Intrusion Prevention System (IPS) and Intrusion D
 
     <a href="https://imgur.com/3GvSbMa"><img src="https://i.imgur.com//3GvSbMa.png" tB2TqFcLitle="source: imgur.com" /></a>
 
-# Now we need to create a virtual IP for Network Address Transilation for inbound policy allowing only RDP traffic
+### Now we need to create a virtual IP for Network Address Transilation for inbound policy allowing only RDP traffic
 
  - FortiGate WebUI > Policy & Objects > Virtual IP > + Create new
    - External Ip address = External port on Firewall
@@ -130,7 +130,7 @@ To further enhance protection, Intrusion Prevention System (IPS) and Intrusion D
 
 <a href="https://imgur.com/QE9nD1z"><img src="https://i.imgur.com//QE9nD1z.png" tB2TqFcLitle="source: imgur.com" /></a>
 
-# Create additional incoming Firewall policy for RDP traffic
+### Create additional incoming Firewall policy for RDP traffic
 
   - FortiGate WebUI > Policy & Objects > Port1 (WAN to DMZ)
   - Incoming interface = WAN (port1)
@@ -145,7 +145,7 @@ To further enhance protection, Intrusion Prevention System (IPS) and Intrusion D
     
  <a href="https://imgur.com/MotK6tj"><img src="https://i.imgur.com//MotK6tj.png" tB2TqFcLitle="source: imgur.com" /></a>
 
-# 11. Test our connection between our VMs in the DMZ and to the internet using PING command.
+### 11. Test our connection between our VMs in the DMZ and to the internet using PING command.
   
   - Successfull PING request
      
@@ -165,7 +165,7 @@ To further enhance protection, Intrusion Prevention System (IPS) and Intrusion D
 
   <a href="https://imgur.com/OTtkd3I"><img src="https://i.imgur.com//OTtkd3I.png" tB2TqFcLitle="source: imgur.com" /></a>
 
-# 12. Enable IPS (Intrusion Prevention System) on our NGFW
+### 12. Enable IPS (Intrusion Prevention System) on our NGFW
 
   - FortiGate WebUI > Intrusion Prevention > + Create new
   - Botnet C&C = Blocked
@@ -189,7 +189,7 @@ To further enhance protection, Intrusion Prevention System (IPS) and Intrusion D
 
     <a href="https://imgur.com/XO2mYJe"><img src="https://i.imgur.com//XO2mYJe.png" tB2TqFcLitle="source: imgur.com" /></a>
 
-# 13. Next we create a custom IPS signature that will enable us to block a malicious bruteforce attack
+### 13. Next we create a custom IPS signature that will enable us to block a malicious bruteforce attack
 
   - FortiGate WebUI > Security Profiles > IPS Signatures > Create new
   - Name it > Paste the following custom signature > Ok
@@ -200,7 +200,7 @@ To further enhance protection, Intrusion Prevention System (IPS) and Intrusion D
 
     <a href="https://imgur.com/wAfub3s"><img src="https://i.imgur.com//wAfub3s.png" tB2TqFcLitle="source: imgur.com" /></a>
 
-# 14. Generate an Action = Deny (Block) by UTM (Unified threat management) log for RDP connection brute force attack
+### 14. Generate an Action = Deny (Block) by UTM (Unified threat management) log for RDP connection brute force attack
 
   - Open RDP (Remote Desktop Connection) from local machine (Outside DMZ)
   - Attempt to login with incorrect credentials (Username & Password) > 5X
@@ -211,7 +211,7 @@ To further enhance protection, Intrusion Prevention System (IPS) and Intrusion D
    
     <a href="https://imgur.com/dzUh16P"><img src="https://i.imgur.com//dzUh16P.png" tB2TqFcLitle="source: imgur.com" /></a>
 
-# 15. Next we create a Log Analytics workspaces for Microsoft Sentinel
+### 15. Next we create a Log Analytics workspaces for Microsoft Sentinel
 
   - Azure.portal.com > search bar >  Log Analytics workspaces >  Create   
   - Azure.portal.com > search bar >  Microsoft Sentinel > Select > Log Analytics workspace > Add
